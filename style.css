@@ -1,0 +1,356 @@
+:root {
+  --bg: #fff5fa;
+  --card: #ffffff;
+  --text: #3b0b29;
+  --muted: #a14b7b;
+  --primary: #ff4da6;
+  --primary-soft: #ffe4f0;
+  --primary-deep: #cc0a6b;
+  --shadow: 0 14px 40px rgba(255, 77, 166, 0.24);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  --bg: #1b1020;
+  --card: #2a1631;
+  --text: #ffe9f6;
+  --muted: #e8aed0;
+  --primary: #ff6eb7;
+  --primary-soft: #472139;
+  --primary-deep: #ff9bcf;
+  --shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 245, 250, 0.94);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(255, 77, 166, 0.18);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+  background: transparent;
+}
+
+.navbar a:hover {
+  background: var(--primary-soft);
+  color: var(--primary-deep);
+  box-shadow: 0 6px 18px rgba(255, 77, 166, 0.28);
+}
+
+.menu-toggle {
+  display: none;
+  border: none;
+  background: var(--primary-soft);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--primary-deep);
+}
+
+.theme-toggle {
+  border: 1px solid rgba(255, 182, 210, 0.7);
+  background: var(--primary-soft);
+  color: var(--primary-deep);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.main-content {
+  padding: 26px 0 40px;
+  display: grid;
+  gap: 20px;
+}
+
+.content-card,
+.mini-card,
+.nested-card {
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 182, 210, 0.6);
+}
+
+.content-card {
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-image: radial-gradient(circle at top left, rgba(255, 182, 210, 0.45), transparent 55%);
+}
+
+.content-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 18px 45px rgba(255, 77, 166, 0.35);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
+}
+
+h1, h2, h3, h4 {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--primary-soft);
+  color: var(--primary-deep);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  margin-bottom: 10px;
+}
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.two-col,
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.mini-card,
+.nested-card {
+  padding: 16px;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 16px;
+  background: linear-gradient(135deg, var(--primary), #ff85c0);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 77, 166, 0.5);
+}
+
+.input-field {
+  width: 100%;
+  border: 1px solid rgba(255, 182, 210, 0.8);
+  background: #fff;
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-family: inherit;
+  margin: 10px 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 182, 210, 0.35);
+  padding: 10px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+img,
+iframe {
+  width: 100%;
+  border-radius: 14px;
+}
+
+iframe {
+  height: 360px;
+  border: 0;
+}
+
+.zoom-image {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.zoom-image:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
+  margin: 14px 0;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.teacher-item {
+  background: #fff0f6;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+}
+
+.chat-box {
+  background: #fff0f6;
+  border-radius: 14px;
+  padding: 12px;
+  min-height: 140px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.attendance-student {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 182, 210, 0.35);
+}
+
+.big-number {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.site-footer {
+  margin-top: 16px;
+  padding: 18px 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 980px) {
+  .teacher-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    order: 3;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar {
+    display: none;
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .navbar.open {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .two-col,
+  .feature-grid,
+  .metrics-grid,
+  .teacher-main {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

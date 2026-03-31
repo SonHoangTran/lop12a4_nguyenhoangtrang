@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Lớp 12A4 - THPT Lê Quý Đôn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">🎓 12A4 - Lê Quý Đôn</div>
+      <button id="themeToggle" class="theme-toggle" aria-label="Chuyển giao diện sáng tối">🌙 Tối</button>
+      <button id="menuToggle" class="menu-toggle" aria-label="Mở menu">☰</button>
+      <nav id="navbar" class="navbar">
+        <a href="#truong-hoc">Trường học</a>
+        <a href="#tong-quan">Tổng quan</a>
+        <a href="#giao-vien">Giáo viên</a>
+        <a href="#hoc-sinh">Học sinh</a>
+        <a href="#thoi-khoa-bieu">Thời khóa biểu</a>
+        <a href="#thong-bao">Thông báo</a>
+        <a href="#tai-lieu">Tài liệu</a>
+        <a href="#dinh-huong">Định hướng</a>
+        <a href="#diem-danh">Điểm danh</a>
+        <a href="#tin-nhan">Tin nhắn</a>
+        <a href="#ai-hoc-tap">AI</a>
+        <a href="#ban-do">Bản đồ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <section id="truong-hoc" class="content-card reveal">
+      <span class="badge">Cổng thông tin</span>
+      <h1>🏫 Trường THPT Lê Quý Đôn - Đắk Lắk</h1>
+      <p>Thông tin chính thức dành cho học sinh lớp 12A4. Cập nhật thông báo, tài liệu học tập và hoạt động của lớp.</p>
+      <div class="chip-row">
+        <span class="badge">Năm học 2025–2026</span>
+        <span class="badge">Chuyển đổi số</span>
+        <span class="badge">Học tập an toàn</span>
+      </div>
+      <div class="two-col">
+        <img class="zoom-image" src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/2017/02/z7455707284419_4cb79b9fbab73cb729342ccb64908048.jpg" alt="Trường Lê Quý Đôn">
+        <div class="nested-card">
+          <strong>Website chính thức</strong>
+          <p>Tra cứu lịch học, thông báo mới nhất</p>
+          <a class="btn" href="https://c3lequydon.daklak.edu.vn/" target="_blank" rel="noreferrer">Truy cập ngay</a>
+        </div>
+      </div>
+      <div class="metrics-grid">
+        <article class="mini-card"><h3>👨‍🏫 Quy mô & đội ngũ</h3><p><strong>40 lớp – 1.738 học sinh</strong><br>103 cán bộ, giáo viên</p></article>
+        <article class="mini-card"><h3>🏫 Cơ sở vật chất</h3><p><strong>43 phòng học kiên cố</strong>, phòng bộ môn hiện đại</p></article>
+        <article class="mini-card"><h3>🏆 Định hướng</h3><p>Kỷ cương – an toàn – hạnh phúc, đẩy mạnh STEM</p></article>
+      </div>
+      <div class="feature-grid">
+        <article class="mini-card"><span class="badge">📜 Thành tích</span><h3>Chất lượng giáo dục</h3><p>HKI 2025–2026: <strong>07 HS đội tuyển quốc gia</strong>, 155 HS giỏi cấp trường, 23 sản phẩm KHKT.</p></article>
+        <article class="mini-card"><span class="badge">🌱 Phát triển bền vững</span><h3>Định hướng phát triển</h3><p>Phát huy truyền thống 26 năm, đổi mới sáng tạo, nâng cao chất lượng chuyên môn.</p></article>
+      </div>
+      <h3>📸 Hình ảnh hoạt động</h3>
+      <div class="gallery-grid" id="schoolGalleryGrid"></div>
+    </section>
+
+    <section id="tong-quan" class="content-card reveal">
+      <h2>Tổng quan Lớp 12A4</h2>
+      <p>Chào mừng bạn đến với hệ thống quản lý lớp học.</p>
+      <div class="metrics-grid">
+        <article class="mini-card"><h3>Tổng số HS</h3><p class="big-number">45</p></article>
+        <article class="mini-card"><h3>Điểm TB</h3><p class="big-number">8.2</p></article>
+        <article class="mini-card"><h3>HS Giỏi</h3><p class="big-number">34</p></article>
+      </div>
+      <article class="mini-card">
+        <h3>Thời khóa biểu hôm nay</h3>
+        <ul>
+          <li>Tiết 1: Toán</li>
+          <li>Tiết 2: Vật lí</li>
+          <li>Tiết 3: Ngữ văn</li>
+          <li>Tiết 4: Tiếng Anh</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="giao-vien" class="content-card reveal">
+      <h2>Giáo viên chủ nhiệm</h2>
+      <div class="teacher-main">
+        <img class="zoom-image" src="thayhuy.jpg" alt="Nguyễn Phương Huy">
+        <div>
+          <h3>Nguyễn Phương Huy</h3>
+          <p>Giáo viên chủ nhiệm lớp 12A4</p>
+          <p>Giảng dạy: Hóa học</p>
+          <p>Mô tả: Giáo viên thân thiện, nhiệt tình với học sinh.</p>
+        </div>
+      </div>
+      <h3>Giáo viên bộ môn</h3>
+      <div class="teacher-grid">
+        <article class="teacher-item"><img class="zoom-image" src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-5-rkrn8xjxvgjbnaooav6s45ng8juwg8jhs0a12ejlle.jpg" alt="Nguyễn Thị Thu Thủy"><h4>Nguyễn Thị Thu Thủy</h4><p>Môn: Toán</p><p>Mô tả: Cô dạy dễ hiểu, nhiệt tình với học sinh.</p></article>
+        <article class="teacher-item"><img class="zoom-image" src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/t%C3%ADn-rkrpx0m0hs2igb478eduzwrqai9nadzpnl0v4o2tjm.jpg" alt="Nguyễn Trung Tín"><h4>Nguyễn Trung Tín</h4><p>Môn: Sinh học</p><p>Mô tả: Thầy giảng bài sinh động, vui tính.</p></article>
+        <article class="teacher-item"><img class="zoom-image" src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/b%C3%B9i-h%C6%B0%C6%A1ng-rkrqrhjo1fs4t8uub2jhbpynj62zt5ygueci6kwckg.jpg" alt="Bùi Thị Hương"><h4>Bùi Thị Hương</h4><p>Môn: Ngữ văn</p><p>Mô tả: Tận tâm, truyền cảm hứng học sinh.</p></article>
+        <article class="teacher-item"><img class="zoom-image" src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-25-rkrn99rucb01u86xbigxikkfyk6o8aw05orcb01hci.jpg" alt="Trần Thị Minh Tâm"><h4>Trần Thị Minh Tâm</h4><p>Môn: Tiếng Anh</p><p>Mô tả: Cô vui vẻ, dễ gần.</p></article>
+        <article class="teacher-item"><img class="zoom-image" src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/Huong-tn-rkrr8rstprfyb3qzdjii6cxss8vzcskrvy7xvr9q5c.jpg" alt="Huỳnh Thị Thanh Hương"><h4>Huỳnh Thị Thanh Hương</h4><p>Môn: Tin học</p><p>Mô tả: Cô nhiệt tình, tận tâm với học sinh.</p></article>
+      </div>
+    </section>
+
+    <section id="hoc-sinh" class="content-card reveal">
+      <h2>👥 Danh sách Lớp 12A4</h2>
+      <input type="text" id="searchStudent" class="input-field" placeholder="🔍 Tìm tên học sinh...">
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>STT</th><th>Họ và Tên</th><th>Ngày sinh</th><th>Giới tính</th><th>Chức vụ</th><th>Trạng thái</th></tr>
+          </thead>
+          <tbody id="studentList"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="thoi-khoa-bieu" class="content-card reveal">
+      <h2>Thời khóa biểu 12A4</h2>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Tiết</th><th>Thứ 2</th><th>Thứ 3</th><th>Thứ 4</th><th>Thứ 5</th><th>Thứ 6</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Chào cờ</td><td>Ngữ Văn</td><td>Hóa học</td><td>Lịch sử</td><td>Tin học</td></tr>
+            <tr><td>2</td><td>Văn</td><td>Hóa</td><td>Toán</td><td>Anh</td><td>Lý</td></tr>
+            <tr><td>3</td><td>Anh</td><td>Sử</td><td>Lý</td><td>Văn</td><td>Toán</td></tr>
+            <tr><td>4</td><td>Tin</td><td>GDCD</td><td>Anh</td><td>Hóa</td><td>Sinh</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="thong-bao" class="content-card reveal">
+      <h2>📢 Thông báo lớp 12A4</h2>
+      <article class="mini-card"><h3>🧧 Nghỉ Tết Nguyên Đán 2026</h3><p>Thời gian nghỉ: 14/02 – 22/02/2026. Học lại ngày 23/02.</p></article>
+      <article class="mini-card"><h3>✏️ Lịch thi giữa kỳ 2</h3><p>Ngày 15/03/2026, các em kiểm tra phòng thi tại bảng tin.</p></article>
+    </section>
+
+    <section id="tai-lieu" class="content-card reveal">
+      <h2>📁 Tài liệu học tập</h2>
+      <div class="metrics-grid">
+        <article class="mini-card"><h4>Môn Toán</h4><p>14 đề thi thử</p><button class="btn">Tải xuống</button></article>
+        <article class="mini-card"><h4>Môn Văn</h4><p>Bộ đề nghị luận</p><button class="btn">Tải xuống</button></article>
+        <article class="mini-card"><h4>Môn Anh</h4><p>25 đề trắc nghiệm</p><button class="btn">Tải xuống</button></article>
+      </div>
+    </section>
+
+    <section id="dinh-huong" class="content-card reveal">
+      <h2>🧭 Định hướng nghề nghiệp</h2>
+      <p>Học sinh 12A4 có thể tham khảo các kỳ thi riêng: HSA, V-ACT, TSA, V-SAT. Hãy chọn tổ hợp phù hợp.</p>
+      <div class="feature-grid">
+        <article class="mini-card"><h4>HSA - ĐHQG Hà Nội</h4><p>Phù hợp với nhóm ngành kinh tế, kỹ thuật.</p><a href="#" class="btn">Xem chi tiết</a></article>
+        <article class="mini-card"><h4>V-ACT - ĐHQG TP.HCM</h4><p>Đánh giá năng lực toàn diện.</p><a href="#" class="btn">Xem chi tiết</a></article>
+      </div>
+    </section>
+
+    <section id="diem-danh" class="content-card reveal">
+      <h2>📝 Điểm danh lớp 12A4</h2>
+      <div id="attendanceListContainer"></div>
+      <button id="saveAttendanceBtn" class="btn">Lưu điểm danh</button>
+    </section>
+
+    <section id="tin-nhan" class="content-card reveal">
+      <h2>💬 Tin nhắn lớp</h2>
+      <div id="chatMessages" class="chat-box">
+        <div><strong>Cô Tin:</strong> Các em nhớ nộp bài tập nhé!</div>
+        <div><strong>Bạn:</strong> Dạ em đã nộp ạ.</div>
+      </div>
+      <div class="input-row">
+        <input type="text" id="chatInput" class="input-field" placeholder="Nhập tin nhắn...">
+        <button id="sendChatBtn" class="btn">Gửi</button>
+      </div>
+    </section>
+
+    <section id="ai-hoc-tap" class="content-card reveal">
+      <h2>🤖 Trợ lý AI học tập</h2>
+      <div id="aiChat" class="chat-box"><div>👋 Hỏi tôi bất kỳ câu hỏi học tập nào!</div></div>
+      <div class="input-row">
+        <input type="text" id="aiInput" class="input-field" placeholder="Hỏi bài tập, giải thích...">
+        <button id="askAiBtn" class="btn">Gửi</button>
+      </div>
+    </section>
+
+    <section id="ban-do" class="content-card reveal">
+      <h2>🗺️ Bản đồ trường THPT Lê Quý Đôn</h2>
+      <iframe
+        title="Bản đồ THPT Lê Quý Đôn"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=27+Tr%E1%BA%A7n+Nh%E1%BA%ADt+Du%E1%BA%ADt,+T%C3%A2n+L%E1%BB%A3i,+Bu%C3%B4n+Ma+Thu%E1%BB%99t,+%C4%90%E1%BA%AFk+L%E1%BA%AFk,+Vi%E1%BB%87t+Nam&output=embed">
+      </iframe>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>THPT Lê Quý Đôn - Lớp 12A4 | Năm học 2025–2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

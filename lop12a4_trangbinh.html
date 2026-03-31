@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<title>Quản Lý Lớp 12A4 - THPT Lê Quý Đôn</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+.heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 18px;
+  animation: fall 1s linear forwards;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(50px) scale(0.5);
+    opacity: 0;
+  }
+}
+  /* === BASE STYLES (giữ nguyên từ mẫu) === */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    overflow-x: hidden;
+  }
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+  /* SIDEBAR */
+  .sidebar {
+    width: 260px;
+    background: white;
+    border-right: 1px solid #e2e8f0;
+    padding: 24px 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 100;
+  }
+  .sidebar .logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c8102e;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sidebar .menu h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    margin: 20px 0 12px 0;
+  }
+  .sidebar .menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: #475569;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+    margin-bottom: 4px;
+  }
+  .sidebar .menu a i { width: 24px; }
+  .sidebar .menu a:hover, .sidebar .menu a.active {
+    background: #fef2f2;
+    color: #c8102e;
+  }
+  .sidebar .semester {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 12px;
+    color: #64748b;
+  }
+  /* MAIN CONTENT */
+  .main {
+    flex: 1;
+    margin-left: 260px;
+    padding: 20px 30px;
+    transition: margin-left 0.3s;
+  }
+  /* TOPBAR */
+  .topbar-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 12px 24px;
+    border-radius: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .utility-title-wrap .utility-label {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .utility-title-wrap .utility-page-title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .quick-tool-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .utility-btn {
+    background: #f1f5f9;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .utility-btn.active {
+    background: #c8102e;
+    color: white;
+  }
+  .theme-fab {
+    background: #f1f5f9;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 40px;
+    cursor: pointer;
+  }
+  .utility-user-pill {
+    background: #f1f5f9;
+    padding: 6px 16px;
+    border-radius: 40px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  /* PAGES */
+  .page {
+    display: none;
+    width: 100%;
+  }
+  .page.active {
+    display: block;
+  }
+  /* CARDS & UTILITY */
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+  }
+  .btn-gradient {
+    background: #c8102e;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .btn-gradient:hover { background: #a00c26; }
+  .input-field {
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 40px;
+    font-size: 14px;
+    width: 100%;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .data-table th, .data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .badge {
+    background: #e2e8f0;
+    padding: 4px 10px;
+    border-radius: 40px;
+    font-size: 12px;
+  }
+  /* MODAL LOGIN */
+  .login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-card {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 30px;
+    text-align: center;
+  }
+  .login-card h2 {
+    color: #c8102e;
+    margin-bottom: 10px;
+  }
+  .login-card input {
+    margin: 10px 0;
+  }
+  .login-error {
+    color: red;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; }
+    .sidebar-toggle { display: block; }
+  }
+  /* Các style bổ sung cho các trang cụ thể */
+  .school-header-card, .school-metrics-grid, .school-feature-card, .gallery-grid {
+    display: grid;
+    gap: 20px;
+  }
+  .school-header-card { grid-template-columns: 1fr 1fr; background: white; border-radius: 24px; padding: 30px; margin-bottom: 30px; }
+  .school-metrics-grid { grid-template-columns: repeat(3,1fr); }
+  .school-feature-card { grid-template-columns: 1fr 1fr; align-items: center; background: white; border-radius: 24px; padding: 20px; margin-bottom: 20px; }
+  .school-gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; margin-top: 20px; }
+  .school-gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 16px; cursor: pointer; }
+  .teacher-list { display: flex; gap: 20px; flex-wrap: wrap; }
+  .teacher-card { background: white; border-radius: 24px; padding: 20px; text-align: center; width: 200px; }
+  .teacher-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; }
+  /* Thêm style cho gallery */
+  .gallery-item { border-radius: 16px; overflow: hidden; }
+  .student-mini-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap: 10px; margin-top: 20px; }
+  .student-card { background: #f8fafc; padding: 12px; border-radius: 16px; text-align: center; font-size: 13px; }
+  .attendance-list { margin-top: 15px; }
+  .attendance-student { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #e2e8f0; }
+  /* ===== PINK THEME (KHÔNG PHÁ CODE CŨ) ===== */
+:root {
+  --pink-main: #ff4da6;
+  --pink-light: #ffe4f0;
+  --pink-soft: #fff0f6;
+  --pink-dark: #cc0066;
+}
+
+/* Bật chế độ */
+body.pink-mode {
+  background: var(--pink-soft) !important;
+}
+
+/* Card */
+body.pink-mode .card {
+  background: #fff !important;
+  box-shadow: 0 6px 20px rgba(255, 77, 166, 0.2) !important;
+}
+
+/* Tiêu đề */
+body.pink-mode h1,
+body.pink-mode h2,
+body.pink-mode h3 {
+  color: var(--pink-main) !important;
+}
+
+/* Button */
+body.pink-mode button,
+body.pink-mode .btn,
+body.pink-mode .btn-gradient {
+  background: linear-gradient(45deg, var(--pink-main), #ff99cc) !important;
+  color: white !important;
+  border: none;
+}
+
+/* Badge */
+body.pink-mode .badge {
+  background: var(--pink-light) !important;
+  color: var(--pink-dark) !important;
+}
+
+/* Input */
+body.pink-mode input,
+body.pink-mode select {
+  border: 1px solid #ffb3d9 !important;
+}
+
+/* Table */
+body.pink-mode table th {
+  background: var(--pink-main) !important;
+  color: white !important;
+}
+
+/* Link */
+body.pink-mode a {
+  color: var(--pink-main) !important;
+}
+
+/* Ảnh */
+body.pink-mode img {
+  box-shadow: 0 5px 15px rgba(255, 77, 166, 0.3);
+  border-radius: 12px;
+}
+
+/* Scroll */
+body.pink-mode::-webkit-scrollbar-thumb {
+  background: var(--pink-main);
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">🎓 12A4 - Lê Quý Đôn</div>
+    <div class="menu">
+      <h4>TRANG CHỦ</h4>
+      <a href="#" onclick="showPage('truong-hoc',this)"><i>🏫</i> Trường học</a>
+      <a href="#" onclick="showPage('tong-quan',this)"><i>📊</i> Tổng quan</a>
+      <a href="#" onclick="showPage('diem-danh',this)"><i>📝</i> Điểm danh</a>
+      <a href="#" onclick="showPage('hoc-sinh',this)"><i>👥</i> Quản lý học sinh</a>
+      <a href="#" onclick="showPage('thoi-khoa-bieu',this)"><i>📚</i> Thời khóa biểu</a>
+      <h4>TIỆN ÍCH</h4>
+      <a href="#" onclick="showPage('thong-bao',this)"><i>📢</i> Thông báo</a>
+      <a href="#" onclick="showPage('tai-lieu',this)"><i>📁</i> Tài liệu</a>
+      <a href="#" onclick="showPage('dinh-huong',this)"><i>🧭</i> Định hướng nghề</a>
+      <a href="#" onclick="showPage('ban-do',this)"><i>🗺️</i> Bản đồ</a>
+      <a href="#" onclick="showPage('tin-nhan',this)"><i>💬</i> Tin nhắn</a>
+      <a href="#" onclick="showPage('ai-hoc-tap',this)"><i>🤖</i> Học tập cùng AI</a>
+      <h4>HỆ THỐNG</h4>
+      <a href="#" onclick="showPage('cai-dat',this)"><i>⚙️</i> Cài đặt</a>
+    </div>
+    <div class="semester"><small>Năm học 2025–2026</small><br/><strong>Học kỳ 2</strong></div>
+  </aside>
+  <main class="main">
+    <div class="topbar-actions">
+      <div class="topbar-left">
+        <button class="sidebar-toggle always-visible" onclick="toggleSidebar()">☰</button>
+        <div class="utility-title-wrap">
+          <div class="utility-label">Thanh công cụ • bấm để mở nhanh</div>
+          <div class="utility-page-title" id="pageTitle">Trường học</div>
+        </div>
+      </div>
+      <div class="quick-tool-list" id="quickTools"></div>
+      <div class="topbar-vip-actions">
+        <button class="theme-fab" onclick="toggleDarkMode()">🌙</button>
+        <div class="utility-user-pill"><span>👤 <span id="userNameDisplay">Thành viên</span></span><b>12A4</b></div>
+        <button class="utility-btn" onclick="logout()">🚪 Đăng xuất</button>
+      </div>
+    </div>
+
+    <!-- CÁC TRANG -->
+    <section class="page active" id="truong-hoc">
+      <div class="school-header-card">
+           <!-- TEXT -->
+    <div class="intro-text">
+      <span class="badge">Cổng thông tin</span>
+      <h2>🏫 Trường THPT Lê Quý Đôn - Đắk Lắk</h2>
+      <p>Thông tin chính thức dành cho học sinh lớp 12A4. Cập nhật thông báo, tài liệu học tập và hoạt động của lớp.</p>
+
+      <div class="school-chip-row">
+        <span class="badge">Năm học 2025–2026</span>
+        <span class="badge">Chuyển đổi số</span>
+        <span class="badge">Học tập an toàn</span>
+      </div>
+    </div>
+        <!-- ẢNH -->
+    <div class="intro-image">
+      <img src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/2017/02/z7455707284419_4cb79b9fbab73cb729342ccb64908048.jpg" alt="Trường Lê Quý Đôn"
+	    style="width:500px; height:400px; object-fit:cover; border-radius:15px;">
+    </div>
+
+    <div class="school-chip-row">
+      <span class="badge">Năm học 2025–2026</span>
+      <span class="badge">Chuyển đổi số</span>
+      <span class="badge">Học tập an toàn</span>
+    </div>
+
+        <div class="school-header-stat"><div class="card"><strong>Website chính thức</strong><p>Tra cứu lịch học, thông báo mới nhất</p><a href="https://c3lequydon.daklak.edu.vn/" target="_blank" class="btn-gradient">Truy cập ngay</a></div></div>
+      </div>
+      <div class="school-metrics-grid">
+        <div class="card"><div class="school-info-icon">👨‍🏫</div><h4>Quy mô & đội ngũ</h4><p><strong>40 lớp – 1.738 học sinh</strong><br/>103 cán bộ, giáo viên</p></div>
+        <div class="card"><div class="school-info-icon">🏫</div><h4>Cơ sở vật chất</h4><p><strong>43 phòng học kiên cố</strong>, phòng bộ môn hiện đại</p></div>
+        <div class="card"><div class="school-info-icon">🏆</div><h4>Định hướng</h4><p>Kỷ cương – an toàn – hạnh phúc, đẩy mạnh STEM</p></div>
+      </div>
+      <div class="school-feature-card"><div><span class="badge">📜 Thành tích</span><h3>Chất lượng giáo dục</h3><p>HKI 2025–2026: <strong>07 HS đội tuyển quốc gia</strong>, 155 HS giỏi cấp trường, 23 sản phẩm KHKT.</p></div><img src="images/truong2.jpg" style="width:100%; max-width:200px; border-radius:20px;" onerror="this.src='https://via.placeholder.com/200?text=12A4'"/></div>
+      <div class="school-feature-card"><img src="images/truong3.jpg" style="width:100%; max-width:200px; border-radius:20px;" onerror="this.src='https://via.placeholder.com/200?text=12A4'"/><div><span class="badge">🌱 Phát triển bền vững</span><h3>Định hướng phát triển</h3><p>Phát huy truyền thống 26 năm, đổi mới sáng tạo, nâng cao chất lượng chuyên môn.</p></div></div>
+      <div class="card"><h3>📸 Hình ảnh hoạt động</h3><div class="school-gallery-grid" id="schoolGalleryGrid">
+	  <img src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/PHONG-SU-pf1yzmpjptuaj3fmcc9pmtm5fmk9g1ekg6ijd6kqr2.jpg" alt="Hoạt động 1">
+    <img src="images/thanhxuan2.jpg" alt="Hoạt động 2">
+    <img src="images/anh3.jpg" alt="Hoạt động 3">
+    </div></div>
+      <div class="card"><h3>🌟 Giáo viên tiêu biểu</h3><div class="teacher-list" id="teacherList"></div></div>
+    </section>
+
+    <section class="page" id="tong-quan">
+      <div class="card"><h2>Tổng quan Lớp 12A4</h2><p>Chào mừng bạn đến với hệ thống quản lý lớp học.</p><div style="display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin:20px 0"><div class="card"><h3>Tổng số HS</h3><div class="value" style="font-size:32px; font-weight:bold;">45</div></div><div class="card"><h3>Điểm TB</h3><div class="value" style="font-size:32px;">8.2</div></div><div class="card"><h3>HS Giỏi</h3><div class="value" style="font-size:32px;">34</div></div></div></div>
+      <div class="card"><h3>Thời khóa biểu hôm nay</h3><ul><li>Tiết 1: Toán</li><li>Tiết 2: Vật lí</li><li>Tiết 3: Ngữ văn</li><li>Tiết 4: Tiếng Anh</li></ul></div>
+      <head>
+  <meta charset="UTF-8">
+  <title>Giáo viên chủ nhiệm</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff0f6;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: none;
+	  width: 100%;
+    }
+
+    .card h3 {
+      margin-bottom: 20px;
+      color: #ff4da6;
+    }
+
+    /* 👉 PHẦN QUAN TRỌNG */
+    .teacher-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .teacher-card img {
+      width: 500px;
+      height: 500px;
+       object-fit: contain;  /* hiện toàn bộ ảnh */
+       border-radius: 0;     /* bo góc vuông */
+    }
+
+    .teacher-info {
+      flex: 1;
+    }
+
+    .teacher-info h4 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .teacher-info p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    /* ✨ hiệu ứng nhẹ */
+    .teacher-card:hover {
+      transform: scale(1.02);
+      transition: 0.3s;
+    }
+	/* Giáo viên bộ môn */
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 5 người / hàng */
+      gap: 20px;
+      width: 100%;
+    }
+
+   .teacher-item {
+      text-align: center;
+      background: #fff;
+      padding: 15px;
+      border-radius: 15px;  /* bo góc thẻ */
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .teacher-item img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;    /* ảnh vừa khung */
+      border-radius: 15px;  /* bo góc ảnh */
+      margin-bottom: 10px;
+      background: #f8f8f8;
+    }
+
+    .teacher-item h4 {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    .teacher-item p {
+      margin: 3px 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .teacher-item:hover {
+      transform: translateY(-5px);
+      transition: 0.3s;
+    }
+
+    /* Responsive mobile */
+    @media (max-width: 768px) {
+      .teacher-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h3>Giáo viên chủ nhiệm</h3>
+
+    <div class="teacher-card">
+      
+      <img src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/huy-rkrr3u5bu2orcsx16wq0l3roif7lxzzi7ix66gl636.jpg"
+           onerror="this.src='https://via.placeholder.com/150?text=Thầy+Huy'"/>
+
+      <div class="teacher-info">
+        <h4>Nguyễn Phương Huy</h4>
+        <p>Giáo viên chủ nhiệm lớp 12A4</p>
+        <p>Giảng dạy:Hóa học</p>
+        <p>Mô tả: Giáo viên thân thiện, nhiệt tình với học sinh.</p>
+      </div>
+
+    </div>
+  </div>
+     <!-- Giáo viên bộ môn -->
+  <div class="card">
+    <h3>Giáo viên bộ môn</h3>
+    <div class="teacher-grid">
+      <div class="teacher-item">
+        <img src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-5-rkrn8xjxvgjbnaooav6s45ng8juwg8jhs0a12ejlle.jpg" alt="Nguyễn Thị Thu Thủy">
+        <h4>Nguyễn Thị Thu Thủy</h4>
+        <p>Môn: Toán</p>
+        <p>Mô tả: Cô dạy dễ hiểu, nhiệt tình với học sinh.</p>
+      </div>
+      <div class="teacher-item">
+        <img src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/t%C3%ADn-rkrpx0m0hs2igb478eduzwrqai9nadzpnl0v4o2tjm.jpg" alt="Nguyễn Trung Tín">
+        <h4>Nguyễn Trung Tín</h4>
+        <p>Môn: Sinh học</p>
+        <p>Mô tả: Thầy giảng bài sinh động, vui tính.</p>
+      </div>
+      <div class="teacher-item">
+        <img src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/b%C3%B9i-h%C6%B0%C6%A1ng-rkrqrhjo1fs4t8uub2jhbpynj62zt5ygueci6kwckg.jpg" alt="Bùi Thị Hương">
+        <h4>Bùi Thị Hương</h4>
+        <p>Môn: Ngữ văn</p>
+        <p>Mô tả: Tận tâm, truyền cảm hứng học sinh.</p>
+      </div>
+      <div class="teacher-item">
+        <img src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-c%E1%BB%A7a-B%E1%BA%A3n-sao-25-rkrn99rucb01u86xbigxikkfyk6o8aw05orcb01hci.jpg" alt="Trần Thị Minh Tâm">
+        <h4>Trần Thị Minh Tâm</h4>
+        <p>Môn: Tiếng Anh</p>
+        <p>Mô tả: Cô vui vẻ, dễ gần.</p>
+      </div>
+      <div class="teacher-item">
+        <img src="https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/Huong-tn-rkrr8rstprfyb3qzdjii6cxss8vzcskrvy7xvr9q5c.jpg" alt="Huỳnh Thị Thanh Hương">
+        <h4>Huỳnh Thị Thanh Hương</h4>
+        <p>Môn: Tin học</p>
+        <p>Mô tả: Cô nhiệt tình, tận tâm với học sinh.</p>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+    </section>
+
+    <section class="page" id="hoc-sinh">
+      <div class="card"><h2>👥 Danh sách Lớp 12A4</h2><input type="text" class="input-field" id="searchStudent" placeholder="🔍 Tìm tên học sinh..." onkeyup="filterStudents()"/><div class="table-container"><table class="data-table"><thead><tr><th>STT</th><th>Họ và Tên</th><th>Ngày sinh</th><th>Giới tính</th><th>Chức vụ</th><th>Trạng thái</th></tr></thead><tbody id="studentList"></tbody></table></div></div>
+    </section>
+
+    <section class="page" id="thoi-khoa-bieu"><div class="card"><h2>Thời khóa biểu 12A4</h2><table class="data-table"><thead><tr><th>Tiết</th><th>Thứ 2</th><th>Thứ 3</th><th>Thứ 4</th><th>Thứ 5</th><th>Thứ 6</th></tr></thead><tbody><tr><td>1</td><td>Chào cờ</td><td>Ngữ Văn</td><td>Hóa học</td><td>Lịch sử</td><td>Tin học</td></tr><tr><td>2</td><td>Văn</td><td>Hóa</td><td>Toán</td><td>Anh</td><td>Lý</td></tr><tr><td>3</td><td>Anh</td><td>Sử</td><td>Lý</td><td>Văn</td><td>Toán</td></tr><tr><td>4</td><td>Tin</td><td>GDCD</td><td>Anh</td><td>Hóa</td><td>Sinh</td></tr></tbody></table></div></section>
+
+    <section class="page" id="thong-bao"><div class="card"><h2>📢 Thông báo lớp 12A4</h2><div class="timeline-container"><div class="card" style="margin-bottom:15px"><h3>🧧 Nghỉ Tết Nguyên Đán 2026</h3><p>Thời gian nghỉ: 14/02 – 22/02/2026. Học lại ngày 23/02.</p></div><div class="card"><h3>✏️ Lịch thi giữa kỳ 2</h3><p>Ngày 15/03/2026, các em kiểm tra phòng thi tại bảng tin.</p></div></div></div></section>
+
+    <section class="page" id="tai-lieu"><div class="card"><h2>📁 Tài liệu học tập</h2><div class="grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:15px"><div class="card"><h4>Môn Toán</h4><p>14 đề thi thử</p><button class="btn-gradient">Tải xuống</button></div><div class="card"><h4>Môn Văn</h4><p>Bộ đề nghị luận</p><button class="btn-gradient">Tải xuống</button></div><div class="card"><h4>Môn Anh</h4><p>25 đề trắc nghiệm</p><button class="btn-gradient">Tải xuống</button></div></div></div></section>
+
+    <section class="page" id="dinh-huong"><div class="card"><h2>🧭 Định hướng nghề nghiệp</h2><p>Học sinh 12A4 có thể tham khảo các kỳ thi riêng: HSA, V-ACT, TSA, V-SAT. Hãy chọn tổ hợp phù hợp.</p><div class="grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin-top:20px"><div class="card"><h4>HSA - ĐHQG Hà Nội</h4><p>Phù hợp với nhóm ngành kinh tế, kỹ thuật.</p><a href="#" class="btn-gradient">Xem chi tiết</a></div><div class="card"><h4>V-ACT - ĐHQG TP.HCM</h4><p>Đánh giá năng lực toàn diện.</p><a href="#" class="btn-gradient">Xem chi tiết</a></div></div></div></section>
+
+    <section class="page" id="ban-do"><div class="card"><h2>🗺️ Bản đồ trường THPT Lê Quý Đôn</h2><iframe width="100%" height="400" style="border:0; border-radius:20px" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.456!2d108.038!3d12.666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31721b0b7b8c9d4d%3A0x4b8c9d4d7b8c9d4d!2zVHLGsOG7nW5nIFRIUFQgTMOqIFF1w70gxJTDtG4gLSDEkMSrb2sgTMOyaw!5e0!3m2!1svi!2s!4v1610000000000!5m2!1svi!2s" allowfullscreen></iframe></div></section>
+
+    <section class="page" id="tin-nhan"><div class="card"><h2>💬 Tin nhắn lớp</h2><div class="chat-content" style="height:400px; display:flex; flex-direction:column"><div style="flex:1; overflow-y:auto; background:#f1f5f9; border-radius:20px; padding:15px" id="chatMessages"><div><strong>Cô Tin:</strong> Các em nhớ nộp bài tập nhé!</div><div><strong>Bạn:</strong> Dạ em đã nộp ạ.</div></div><div style="display:flex; gap:10px; margin-top:10px"><input type="text" id="chatInput" class="input-field" placeholder="Nhập tin nhắn..."/><button class="btn-gradient" onclick="sendMessage()">Gửi</button></div></div></div></section>
+
+    <section class="page" id="ai-hoc-tap"><div class="card"><h2>🤖 Trợ lý AI học tập</h2><div id="aiChat" style="height:300px; overflow-y:auto; background:#f1f5f9; border-radius:20px; padding:15px; margin-bottom:10px"><div>👋 Hỏi tôi bất kỳ câu hỏi học tập nào!</div></div><div style="display:flex; gap:10px"><input type="text" id="aiInput" class="input-field" placeholder="Hỏi bài tập, giải thích..."/><button class="btn-gradient" onclick="askAI()">Gửi</button></div></div></section>
+
+    <section class="page" id="cai-dat">
+  <div class="card">
+    <h2>⚙️ Cài đặt hệ thống</h2>
+
+    <!-- Dark mode -->
+    <div class="settings-pref-row" style="display:flex; justify-content:space-between">
+      <span>Chế độ tối</span>
+      <label>
+        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"/> Bật
+      </label>
+    </div>
+
+    <!-- Pink mode -->
+    <div class="settings-pref-row" style="display:flex; justify-content:space-between; margin-top:10px">
+      <span>Chế độ màu hồng 🌸</span>
+      <label>
+        <input type="checkbox" id="pinkModeToggle" onchange="togglePinkMode()"/> Bật
+      </label>
+    </div>
+
+    <button class="btn-gradient" style="margin-top:20px" onclick="logout()">Đăng xuất</button>
+  </div>
+</section>
+
+    <section class="page" id="diem-danh"><div class="card"><h2>📝 Điểm danh lớp 12A4</h2><div id="attendanceListContainer"></div><button class="btn-gradient" onclick="saveAttendance()">Lưu điểm danh</button></div></section>
+  </main>
+</div>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <h2>🌸 12A4 - THPT Lê Quý Đôn</h2>
+    <p>Nhập mật khẩu để vào hệ thống</p>
+    <input type="text" id="loginUsername" placeholder="Tên của bạn (tùy ý)" class="input-field"/>
+    <input type="password" id="loginPassword" placeholder="Mật khẩu" class="input-field"/>
+    <button class="btn-gradient" onclick="doLogin()">Đăng nhập</button>
+    <div id="loginError" class="login-error"></div>
+    <p style="margin-top:15px; font-size:12px">Mật khẩu: <strong>1</strong></p>
+  </div>
+</div>
+
+<script>
+const hearts = ["💖","💗","💘","💝","💕"];
+
+document.addEventListener("mousemove", function(e) {
+  let heart = document.createElement("div");
+  heart.innerHTML = hearts[Math.floor(Math.random()*hearts.length)];
+  heart.className = "heart";
+
+  heart.style.left = e.clientX + "px";
+  heart.style.top = e.clientY + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 1000);
+});
+  // Dữ liệu học sinh 12A4 (45 em)
+  const studentNames = [
+    "Lê Thị Ngọc Anh", "Phạm Thị Ngọc Anh", "Vũ Nguyễn Ngọc Anh", "Nguyễn Ngọc Gia Bảo", "Trần Hoài Bảo",
+    "Nguyễn Thị Như Bình", "Hồ Thị Dung", "Trần Hạnh Dung", "Bùi Đoàn Mỹ Duyên", "Huỳnh Đắc Dương",
+    "Vũ Minh Đức", "Trần Gia Huy", "Nguyễn Cảnh Hùng", "Trần Quang Khải", "Nguyễn Quốc Anh Khoa",
+    "Nguyễn Trần Khôi", "Trương Đình Lợi", "Nguyễn Văn Minh", "Nguyễn Ngọc Hà My", "Cao Thành Nam",
+    "Lư Hoàng Bảo Nam", "Nguyễn Hoàng Nam", "Nguyễn Võ Thu Ngân", "Trần Bảo Ngọc", "Phạm Huỳnh Hạnh Nguyên",
+    "Võ Phan Trung Nguyên", "Vương Quốc Nguyên", "Võ Yến Nhi", "Vũ Quỳnh Như", "Nguyễn Bảo Ni",
+    "Nguyễn Ngọc Kim Ny", "Đỗ Nhất Phong", "Nguyễn Duy Quang", "Nguyễn Phạm Mai Thanh", "Nguyễn Minh Thiện",
+    "Nguyễn Hoàng Trang", "Trịnh Thị Ngọc Trâm", "Phạm Xuân Trường", "Nguyễn Thị Ánh Tuyết", "Đoàn Thị Thùy Vân",
+    "Lê Thị Thùy Vân", "Lê Thị Thúy Vy", "Lê Thị Ngọc Dung"
+  ];
+  const studentRoles = [
+    "Học sinh","Lớp trưởng","Học sinh","Học sinh","Học sinh","Ủy viên","Học sinh","Học sinh","Học sinh","Phó Bí thư",
+    "Học sinh","Học sinh","Lớp phó","Học sinh","Học sinh","Lớp phó học tập","Học sinh","Học sinh","Học sinh","Học sinh",
+    "Học sinh","Học sinh","Bí thư","Tổ trưởng","Học sinh","Học sinh","Học sinh","Tổ trưởng","Học sinh","Học sinh",
+    "Học sinh","Học sinh","Tổ trưởng","Học sinh","Học sinh","Tổ trưởng","Học sinh","Học sinh","Học sinh","Học sinh",
+    "Lớp phó văn nghệ","Học sinh","Học sinh","Hoa khôi lớp","Cây hài lớp"
+  ];
+  const studentGenders = studentNames.map((_,i) => i%2===0 ? "Nữ" : "Nam");
+  // Danh sách ảnh gallery
+  const galleryImages = [
+    "http://c3lequydon.daklak.edu.vn/wp-content/uploads/2024/04/434760752_1196938671718306_4073530898512575955_n.jpg.jpg",
+    "z7662010108022_ab3c78f6bae3ecbebf78f34031214c61.jpg",
+    "z7662010111298_757dcf60c1c98e858d3366eaef4462a3.jpg",
+    "z7662010111454_3a5a96bccb743b3ca103327db2ce5570.jpg",
+    "z7662010113095_022a1f30f4bba7a99a0d4c3a17373338.jpg",
+    "z7669219127563_61bec4a64e60f3c292a3eb831515312e.jpg",
+    "z7669219127935_0c9432636909ff6c2e1e91738e31d011.jpg",
+    "z7669219135156_4b8f1f384b42b0d7193a6e01774ff873.jpg",
+    "z7669219135482_14a2d46ccb4e4ee3f999a948f80f8201.jpg"
+  ];
+  // Hiển thị gallery
+  function loadGallery() {
+    const container = document.getElementById("schoolGalleryGrid");
+    if(container) container.innerHTML = galleryImages.map(src => `<div class="gallery-item"><img src="${src}" style="width:100%; height:150px; object-fit:cover; border-radius:16px;" onerror="this.src='https://via.placeholder.com/200?text=12A4'"/></div>`).join('');
+  }
+  // Giáo viên tiêu biểu
+  function loadTeachers() {
+    const container = document.getElementById("teacherList");
+    if(container) container.innerHTML = `
+      <div class="teacher-card"><img src="thayhuy.jpg" onerror="this.src='https://via.placeholder.com/100?text=Thầy+Huy'"/><h4>Nguyễn Phương Huy</h4><p>Chủ nhiệm 12A4</p></div>
+    `;
+  }
+  // Hiển thị danh sách học sinh
+  function renderStudentList() {
+    const tbody = document.getElementById("studentList");
+    if(!tbody) return;
+    const search = document.getElementById("searchStudent")?.value.toLowerCase() || "";
+    const filtered = studentNames.filter((n,i) => n.toLowerCase().includes(search));
+    tbody.innerHTML = filtered.map((name,idx) => {
+      const originalIdx = studentNames.indexOf(name);
+      return `<tr><td>${idx+1}</td><td><strong>${name}</strong></td><td>${2008 - (originalIdx%15)}/0${(originalIdx%12)+1}/2008</td><td>${studentGenders[originalIdx]}</td><td>${studentRoles[originalIdx]}</td><td><span class="badge">Đang học</span></td></tr>`;
+    }).join('');
+  }
+  window.filterStudents = renderStudentList;
+
+  // Điểm danh (đơn giản)
+  let attendance = {};
+  function loadAttendance() {
+    const container = document.getElementById("attendanceListContainer");
+    if(!container) return;
+    container.innerHTML = `<div class="attendance-list">${studentNames.map((name,i) => `<div class="attendance-student"><span>${name}</span><select id="att_${i}"><option value="present">Có mặt</option><option value="absent">Vắng</option></select></div>`).join('')}</div>`;
+  }
+  window.saveAttendance = () => { alert("Đã lưu điểm danh (demo)"); };
+  // AI demo
+  window.askAI = () => {
+    const input = document.getElementById("aiInput");
+    const msg = input.value.trim();
+    if(!msg) return;
+    const chatDiv = document.getElementById("aiChat");
+    chatDiv.innerHTML += `<div><strong>Bạn:</strong> ${msg}</div>`;
+    chatDiv.innerHTML += `<div><strong>AI:</strong> Đây là câu trả lời mẫu. Tính năng đang phát triển!</div>`;
+    input.value = "";
+    chatDiv.scrollTop = chatDiv.scrollHeight;
+  };
+  window.sendMessage = () => {
+    const input = document.getElementById("chatInput");
+    const msg = input.value.trim();
+    if(!msg) return;
+    const chatDiv = document.getElementById("chatMessages");
+    chatDiv.innerHTML += `<div><strong>Bạn:</strong> ${msg}</div>`;
+    input.value = "";
+    chatDiv.scrollTop = chatDiv.scrollHeight;
+  };
+
+  // Các hàm chuyển trang
+  let currentPage = "truong-hoc";
+  function showPage(pageId, el) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(pageId).classList.add("active");
+    document.querySelectorAll(".sidebar .menu a").forEach(a => a.classList.remove("active"));
+    if(el) el.classList.add("active");
+    document.getElementById("pageTitle").innerText = document.querySelector(`.sidebar .menu a.active`)?.innerText || "Trường học";
+    currentPage = pageId;
+    if(pageId === "hoc-sinh") renderStudentList();
+    if(pageId === "diem-danh") loadAttendance();
+    if(pageId === "truong-hoc") { loadGallery(); loadTeachers(); }
+  }
+  window.showPage = showPage;
+
+  // Dark mode
+  window.toggleDarkMode = () => {
+    document.body.classList.toggle("dark-mode");
+    document.body.style.backgroundColor = document.body.classList.contains("dark-mode") ? "#0f172a" : "#f8fafc";
+  };
+  // Sidebar toggle
+  window.toggleSidebar = () => {
+    document.getElementById("sidebar").classList.toggle("open");
+  };
+  // Đăng nhập
+  function doLogin() {
+    const pwd = document.getElementById("loginPassword").value;
+    const username = document.getElementById("loginUsername").value.trim() || "Thành viên";
+    if(pwd === "1") {
+      sessionStorage.setItem("loggedIn", "true");
+      sessionStorage.setItem("username", username);
+      document.getElementById("loginScreen").style.display = "none";
+      document.querySelector(".layout").style.display = "flex";
+      document.getElementById("userNameDisplay").innerText = username;
+      // load dữ liệu
+      renderStudentList();
+      loadGallery();
+      loadTeachers();
+      loadAttendance();
+    } else {
+      document.getElementById("loginError").innerText = "❌ Mật khẩu không đúng. Vui lòng nhập '1'.";
+    }
+  }
+  window.doLogin = doLogin;
+  window.logout = () => {
+    sessionStorage.removeItem("loggedIn");
+    document.getElementById("loginScreen").style.display = "flex";
+    document.querySelector(".layout").style.display = "none";
+  };
+  // Kiểm tra trạng thái
+  if(sessionStorage.getItem("loggedIn") === "true") {
+    document.getElementById("loginScreen").style.display = "none";
+    document.querySelector(".layout").style.display = "flex";
+    document.getElementById("userNameDisplay").innerText = sessionStorage.getItem("username") || "Thành viên";
+    renderStudentList();
+    loadGallery();
+    loadTeachers();
+    loadAttendance();
+  } else {
+    document.querySelector(".layout").style.display = "none";
+  }
+  // Thêm quick tools
+  const quickTools = [
+    {page:"truong-hoc", icon:"🏫", name:"Trường học"},
+    {page:"diem-danh", icon:"🧾", name:"Điểm danh"},
+    {page:"thoi-khoa-bieu", icon:"📚", name:"TKB"},
+    {page:"thong-bao", icon:"🔔", name:"Thông báo"},
+    {page:"dinh-huong", icon:"🧭", name:"Hướng nghiệp"}
+  ];
+  const quickContainer = document.getElementById("quickTools");
+  if(quickContainer) quickContainer.innerHTML = quickTools.map(t => `<button class="utility-btn" onclick="showPage('${t.page}',this)">${t.icon} ${t.name}</button>`).join('');
+  function togglePinkMode() {
+  document.body.classList.toggle("pink-mode");
+
+  if (document.body.classList.contains("pink-mode")) {
+    localStorage.setItem("pinkMode", "on");
+  } else {
+    localStorage.removeItem("pinkMode");
+  }
+}
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("pinkMode") === "on") {
+    document.body.classList.add("pink-mode");
+
+    const toggle = document.getElementById("pinkModeToggle");
+    if (toggle) toggle.checked = true;
+  }
+});
+</script>
+</body>
+</html>
