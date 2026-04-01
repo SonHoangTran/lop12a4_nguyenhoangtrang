@@ -174,6 +174,24 @@ p {
   margin-bottom: 14px;
 }
 
+.schedule-card {
+  padding-left: 22px;
+  margin-top: 12px;
+}
+
+.schedule-list {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.schedule-list li {
+  margin-bottom: 6px;
+}
+
+.memory-card {
+  margin-top: 14px;
+}
+
 .two-col,
 .feature-grid {
   display: grid;
@@ -187,6 +205,10 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-top: 14px;
+}
+
+#tong-quan .metrics-grid {
+  margin-bottom: 16px;
 }
 
 .mini-card,
@@ -274,10 +296,23 @@ iframe {
 }
 
 .teacher-item {
-  background: #fff0f6;
+  background: var(--primary-soft);
   border-radius: 14px;
   padding: 12px;
   text-align: center;
+}
+
+.teacher-item h4,
+.teacher-item p {
+  color: var(--text);
+}
+
+.list-clean {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
 }
 
 .chat-box {
@@ -304,6 +339,13 @@ iframe {
   border-bottom: 1px solid rgba(255, 182, 210, 0.35);
 }
 
+.gentle-coding-card .profile-small {
+  display: block;
+  width: min(320px, 88%);
+  margin: 8px auto 12px;
+  border-radius: 12px;
+}
+
 .big-number {
   font-size: 2rem;
   font-weight: 700;
@@ -315,6 +357,64 @@ iframe {
   text-align: center;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.teacher-profile-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 18, 38, 0.74);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: 16px;
+}
+
+.teacher-profile-modal.open {
+  display: flex;
+}
+
+.teacher-profile-panel {
+  width: min(900px, 95%);
+  max-height: 88vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+  color: #e7f4ff;
+  background: linear-gradient(-45deg, #0d47a1, #0f6ccf, #1565c0, #1d4ed8);
+  background-size: 320% 320%;
+  animation: blueFlow 10s ease infinite;
+  box-shadow: 0 22px 46px rgba(5, 20, 46, 0.45);
+}
+
+.teacher-profile-panel h2 {
+  color: #ffd54f;
+}
+
+.teacher-profile-panel blockquote {
+  margin-top: 14px;
+  border-left: 4px solid #ffd54f;
+  padding-left: 12px;
+  font-style: italic;
+}
+
+.close-modal-btn {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  background: transparent;
+  color: #ffd54f;
+  cursor: pointer;
+}
+
+@keyframes blueFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @media (max-width: 980px) {

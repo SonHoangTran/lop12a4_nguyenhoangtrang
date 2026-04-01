@@ -21,9 +21,19 @@ const studentRoles = [
 const studentGenders = studentNames.map((_, i) => (i % 2 === 0 ? "Nữ" : "Nam"));
 
 const galleryImages = [
-  "https://c3lequydon.daklak.edu.vn/wp-content/uploads/Thumbcache/PHONG-SU-pf1yzmpjptuaj3fmcc9pmtm5fmk9g1ekg6ijd6kqr2.jpg",
-  "https://c3lequydon.daklak.edu.vn/wp-content/uploads/2017/02/z7455707284419_4cb79b9fbab73cb729342ccb64908048.jpg",
-  "thayhuy.jpg"
+  "ảnh trang_hoang_web/anh muc tong quan.png",
+  "ảnh trang_hoang_web/anh muc tong quan2.png",
+  "ảnh trang_hoang_web/anh muc tong quan3.png",
+  "ảnh trang_hoang_web/anh muc tong quan4.png",
+  "ảnh trang_hoang_web/anh muc tong quan5.png",
+  "ảnh trang_hoang_web/anh muc tong quan6.png",
+  "ảnh trang_hoang_web/anh muc tong quan7.png",
+  "ảnh trang_hoang_web/anh muc tong quan8.png",
+  "ảnh trang_hoang_web/anh muc tong quan9.png",
+  "ảnh trang_hoang_web/anh muc tong quan10.png",
+  "ảnh trang_hoang_web/anh muc tong quan11.png",
+  "ảnh trang_hoang_web/anh muc tong quan12.png",
+  "ảnh trang_hoang_web/anh muc tong quan13.png"
 ];
 
 function loadGallery() {
@@ -162,6 +172,34 @@ function initThemeToggle() {
   });
 }
 
+function initTeacherProfileModal() {
+  const openBtn = document.getElementById("teacherProfileBtn");
+  const modal = document.getElementById("teacherProfileModal");
+  const closeBtn = document.getElementById("closeTeacherProfile");
+  if (!openBtn || !modal || !closeBtn) return;
+
+  const closeModal = () => {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  openBtn.addEventListener("click", () => {
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("open")) closeModal();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   loadGallery();
   renderStudentList();
@@ -170,6 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initSmoothMenuClose();
   initThemeToggle();
+  initTeacherProfileModal();
 
   const search = document.getElementById("searchStudent");
   const sendBtn = document.getElementById("sendChatBtn");
