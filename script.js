@@ -1,39 +1,113 @@
 const studentNames = [
-  "Lê Thị Ngọc Anh", "Phạm Thị Ngọc Anh", "Vũ Nguyễn Ngọc Anh", "Nguyễn Ngọc Gia Bảo", "Trần Hoài Bảo",
-  "Nguyễn Thị Như Bình", "Hồ Thị Dung", "Trần Hạnh Dung", "Bùi Đoàn Mỹ Duyên", "Huỳnh Đắc Dương",
-  "Vũ Minh Đức", "Trần Gia Huy", "Nguyễn Cảnh Hùng", "Trần Quang Khải", "Nguyễn Quốc Anh Khoa",
-  "Nguyễn Trần Khôi", "Trương Đình Lợi", "Nguyễn Văn Minh", "Nguyễn Ngọc Hà My", "Cao Thành Nam",
-  "Lư Hoàng Bảo Nam", "Nguyễn Hoàng Nam", "Nguyễn Võ Thu Ngân", "Trần Bảo Ngọc", "Phạm Huỳnh Hạnh Nguyên",
-  "Võ Phan Trung Nguyên", "Vương Quốc Nguyên", "Võ Yến Nhi", "Vũ Quỳnh Như", "Nguyễn Bảo Ni",
-  "Nguyễn Ngọc Kim Ny", "Đỗ Nhất Phong", "Nguyễn Duy Quang", "Nguyễn Phạm Mai Thanh", "Nguyễn Minh Thiện",
-  "Nguyễn Hoàng Trang", "Trịnh Thị Ngọc Trâm", "Phạm Xuân Trường", "Nguyễn Thị Ánh Tuyết", "Đoàn Thị Thùy Vân",
-  "Lê Thị Thùy Vân", "Lê Thị Thúy Vy", "Lê Thị Ngọc Dung"
+  "Lê Thị Ngọc Anh",
+  "Phạm Thị Ngọc Anh",
+  "Vũ Nguyễn Ngọc Anh",
+  "Nguyễn Ngọc Gia Bảo",
+  "Trần Hoài Bảo",
+  "Nguyễn Thị Như Bình",
+  "Hồ Thị Dung",
+  "Trần Hạnh Dung",
+  "Bùi Đoàn Mỹ Duyên",
+  "Huỳnh Đắc Dương",
+  "Vũ Minh Đức",
+  "Trần Gia Huy",
+  "Nguyễn Cảnh Hùng",
+  "Trần Quang Khải",
+  "Nguyễn Quốc Anh Khoa",
+  "Nguyễn Trần Khôi",
+  "Trương Đình Lợi",
+  "Nguyễn Văn Minh",
+  "Nguyễn Ngọc Hà My",
+  "Cao Thành Nam",
+  "Lư Hoàng Bảo Nam",
+  "Nguyễn Hoàng Nam",
+  "Nguyễn Võ Thu Ngân",
+  "Trần Bảo Ngọc",
+  "Phạm Huỳnh Hạnh Nguyên",
+  "Võ Phan Trung Nguyên",
+  "Vương Quốc Nguyên",
+  "Võ Yến Nhi",
+  "Vũ Quỳnh Như",
+  "Nguyễn Bảo Ni",
+  "Nguyễn Ngọc Kim Ny",
+  "Đỗ Nhất Phong",
+  "Nguyễn Duy Quang",
+  "Nguyễn Phạm Mai Thanh",
+  "Nguyễn Minh Thiện",
+  "Nguyễn Hoàng Trang",
+  "Trịnh Thị Ngọc Trâm",
+  "Phạm Xuân Trường",
+  "Nguyễn Thị Ánh Tuyết",
+  "Đoàn Thị Thùy Vân",
+  "Lê Thị Thùy Vân",
+  "Lê Thị Thúy Vy",
+  "Lê Thị Ngọc Dung",
 ];
 
 const studentRoles = [
-  "Học sinh", "Lớp trưởng", "Học sinh", "Học sinh", "Học sinh", "Ủy viên", "Học sinh", "Học sinh", "Học sinh", "Phó Bí thư",
-  "Học sinh", "Học sinh", "Lớp phó", "Học sinh", "Học sinh", "Lớp phó học tập", "Học sinh", "Học sinh", "Học sinh", "Học sinh",
-  "Học sinh", "Học sinh", "Bí thư", "Tổ trưởng", "Học sinh", "Học sinh", "Học sinh", "Tổ trưởng", "Học sinh", "Học sinh",
-  "Học sinh", "Học sinh", "Tổ trưởng", "Học sinh", "Học sinh", "Tổ trưởng", "Học sinh", "Học sinh", "Học sinh", "Học sinh",
-  "Lớp phó văn nghệ", "Học sinh", "Học sinh", "Hoa khôi lớp", "Cây hài lớp"
+  "Học sinh",
+  "Lớp trưởng",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Ủy viên",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Phó Bí thư",
+  "Học sinh",
+  "Học sinh",
+  "Lớp phó",
+  "Học sinh",
+  "Học sinh",
+  "Lớp phó học tập",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Bí thư",
+  "Tổ trưởng",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Tổ trưởng",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Tổ trưởng",
+  "Học sinh",
+  "Học sinh",
+  "Tổ trưởng",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Học sinh",
+  "Lớp phó văn nghệ",
+  "Học sinh",
+  "Học sinh",
+  "Hoa khôi lớp",
+  "Cây hài lớp",
 ];
 
 const studentGenders = studentNames.map((_, i) => (i % 2 === 0 ? "Nữ" : "Nam"));
 
 const galleryImages = [
-  "ảnh trang_hoang_web/anh muc tong quan.png",
-  "ảnh trang_hoang_web/anh muc tong quan2.png",
-  "ảnh trang_hoang_web/anh muc tong quan3.png",
-  "ảnh trang_hoang_web/anh muc tong quan4.png",
-  "ảnh trang_hoang_web/anh muc tong quan5.png",
-  "ảnh trang_hoang_web/anh muc tong quan6.png",
-  "ảnh trang_hoang_web/anh muc tong quan7.png",
-  "ảnh trang_hoang_web/anh muc tong quan8.png",
-  "ảnh trang_hoang_web/anh muc tong quan9.png",
-  "ảnh trang_hoang_web/anh muc tong quan10.png",
-  "ảnh trang_hoang_web/anh muc tong quan11.png",
-  "ảnh trang_hoang_web/anh muc tong quan12.png",
-  "ảnh trang_hoang_web/anh muc tong quan13.png"
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan2.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan3.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan4.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan5.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan6.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan7.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan8.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan9.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan10.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan11.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan12.png",
+  "%E1%BA%A3nh%20trang_hoang_web/anh%20muc%20tong%20quan13.png",
 ];
 
 function loadGallery() {
@@ -43,7 +117,7 @@ function loadGallery() {
   container.innerHTML = galleryImages
     .map(
       (src, idx) =>
-        `<div class="mini-card"><img class="zoom-image" src="${src}" alt="Hoạt động ${idx + 1}"></div>`
+        `<div class="mini-card"><img class="zoom-image" src="${src}" alt="Hoạt động ${idx + 1}"></div>`,
     )
     .join("");
 }
@@ -54,7 +128,9 @@ function renderStudentList() {
   if (!tbody || !searchEl) return;
 
   const keyword = searchEl.value.trim().toLowerCase();
-  const filtered = studentNames.filter((name) => name.toLowerCase().includes(keyword));
+  const filtered = studentNames.filter((name) =>
+    name.toLowerCase().includes(keyword),
+  );
 
   tbody.innerHTML = filtered
     .map((name, index) => {
@@ -89,7 +165,7 @@ function loadAttendance() {
             <option value="absent">Vắng</option>
           </select>
         </div>
-      `
+      `,
     )
     .join("");
 }
@@ -116,7 +192,8 @@ function askAI() {
   const msg = input.value.trim();
   if (!msg) return;
   box.innerHTML += `<div><strong>Bạn:</strong> ${msg}</div>`;
-  box.innerHTML += "<div><strong>AI:</strong> Đây là câu trả lời mẫu. Tính năng đang phát triển!</div>";
+  box.innerHTML +=
+    "<div><strong>AI:</strong> Đây là câu trả lời mẫu. Tính năng đang phát triển!</div>";
   input.value = "";
   box.scrollTop = box.scrollHeight;
 }
@@ -128,7 +205,7 @@ function initRevealAnimation() {
         if (entry.isIntersecting) entry.target.classList.add("visible");
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.15 },
   );
   document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 }
@@ -166,7 +243,9 @@ function initThemeToggle() {
   if (!themeToggle) return;
 
   themeToggle.addEventListener("click", () => {
-    const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+    const nextTheme = document.body.classList.contains("dark-mode")
+      ? "light"
+      : "dark";
     localStorage.setItem("themeMode", nextTheme);
     applyTheme(nextTheme);
   });
@@ -196,7 +275,8 @@ function initTeacherProfileModal() {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modal.classList.contains("open")) closeModal();
+    if (event.key === "Escape" && modal.classList.contains("open"))
+      closeModal();
   });
 }
 
