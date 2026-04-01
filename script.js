@@ -280,6 +280,85 @@ function initTeacherProfileModal() {
   });
 }
 
+function initSakuraEffect() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const layer = document.createElement("div");
+  layer.className = "sakura-layer";
+  document.body.appendChild(layer);
+  const toggleBtn = document.getElementById("sakuraToggle");
+
+  let activePetals = 0;
+  const maxPetals = 24;
+  let sakuraEnabled = localStorage.getItem("sakuraEffect") !== "off";
+  let spawnTimer = null;
+
+  const updateToggleLabel = () => {
+    if (!toggleBtn) return;
+    toggleBtn.textContent = sakuraEnabled ? "🌸 Hoa: Bật" : "🌸 Hoa: Tắt";
+  };
+
+  const spawnPetal = () => {
+    if (!sakuraEnabled || activePetals >= maxPetals) return;
+
+    const petal = document.createElement("span");
+    petal.className = "sakura-petal";
+    petal.style.left = `${Math.random() * 100}vw`;
+    petal.style.animationDuration = `${8 + Math.random() * 7}s`;
+    petal.style.animationDelay = `${Math.random() * 0.4}s`;
+    petal.style.setProperty("--drift", `${-60 + Math.random() * 120}px`);
+    petal.style.setProperty("--spin", `${120 + Math.random() * 260}deg`);
+    petal.style.opacity = `${0.65 + Math.random() * 0.3}`;
+
+    const size = 8 + Math.random() * 8;
+    petal.style.width = `${size}px`;
+    petal.style.height = `${size * 1.3}px`;
+
+    activePetals += 1;
+    layer.appendChild(petal);
+
+    petal.addEventListener("animationend", () => {
+      petal.remove();
+      activePetals = Math.max(0, activePetals - 1);
+    });
+  };
+
+  const clearPetals = () => {
+    layer.innerHTML = "";
+    activePetals = 0;
+  };
+
+  const startEffect = () => {
+    if (spawnTimer) return;
+    spawnTimer = setInterval(spawnPetal, 520);
+    for (let i = 0; i < 10; i += 1) spawnPetal();
+  };
+
+  const stopEffect = () => {
+    if (spawnTimer) {
+      clearInterval(spawnTimer);
+      spawnTimer = null;
+    }
+    clearPetals();
+  };
+
+  if (sakuraEnabled) startEffect();
+  updateToggleLabel();
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      sakuraEnabled = !sakuraEnabled;
+      localStorage.setItem("sakuraEffect", sakuraEnabled ? "on" : "off");
+      updateToggleLabel();
+      if (sakuraEnabled) {
+        startEffect();
+      } else {
+        stopEffect();
+      }
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   loadGallery();
   renderStudentList();
@@ -289,6 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothMenuClose();
   initThemeToggle();
   initTeacherProfileModal();
+  initSakuraEffect();
 
   const search = document.getElementById("searchStudent");
   const sendBtn = document.getElementById("sendChatBtn");

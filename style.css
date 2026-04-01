@@ -27,6 +27,27 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+.sakura-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 30;
+}
+
+.sakura-petal {
+  position: absolute;
+  top: -24px;
+  width: 10px;
+  height: 14px;
+  border-radius: 70% 40% 70% 40%;
+  background: radial-gradient(circle at 30% 30%, #ffe7f3 0 26%, #ff96c9 56%, #ff4fa6 100%);
+  opacity: 0.92;
+  animation: sakura-fall linear forwards;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 1px 3px rgba(255, 58, 153, 0.35));
+}
+
 body.dark-mode {
   --bg: #1b1020;
   --card: #2a1631;
@@ -415,6 +436,26 @@ iframe {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@keyframes sakura-fall {
+  0% {
+    transform: translate3d(0, -30px, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(var(--drift, 35px), 108vh, 0) rotate(var(--spin, 220deg));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sakura-layer {
+    display: none;
+  }
 }
 
 @media (max-width: 980px) {
